@@ -1,11 +1,12 @@
 import React, { useContext } from 'react';
 import { ChessBoardContext } from '../context/ChessBoardContext';
 
-function ChessBlock({ type, component, position }) {
+function ChessBlock({ type, component, position, face }) {
   const { validMoves, selectedPiece, setSelectedPiece, ChessBoard, updateCellComponent } = useContext(ChessBoardContext);
   const isHighlighted = validMoves.some(move => move.x === position.x && move.y === position.y);
 
   function handleClick(){
+    console.log(face);
     if(selectedPiece !== null ){
       updateCellComponent(position.x, position.y, selectedPiece);
     }

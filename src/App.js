@@ -1,5 +1,6 @@
 import React from 'react'
 import ChessBoard from './components/board/chessBoard'
+import MainMenu from './pages/MainMenu';
 
 function App() {
   return (

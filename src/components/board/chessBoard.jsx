@@ -18,60 +18,58 @@ function ChessBoard() {
                     switch(row){
                         case 0:
                             if(columns === 0 || columns === 7){
-                                component = <PieceRook defaultPosition={{x: columns, y: row}} currentPosition={{x: columns, y: row}}/>
                                 face = 'white';
+                                component = <PieceRook defaultPosition={{x: columns, y: row}} currentPosition={{x: columns, y: row}} face={face} active={false}/>
                             }
                             else if(columns === 1 || columns === 6){
-                                component = <PieceKnight defaultPosition={{x: columns, y: row}} currentPosition={{x: columns, y: row}}/>
                                 face = 'white';
+                                component = <PieceKnight defaultPosition={{x: columns, y: row}} currentPosition={{x: columns, y: row}} face={face} active={false}/>
                             }
                             else if(columns === 2 || columns === 5){
-                                component = <PieceBishop defaultPosition={{x: columns, y: row}} currentPosition={{x: columns, y: row}}/>
                                 face = 'white';
+                                component = <PieceBishop defaultPosition={{x: columns, y: row}} currentPosition={{x: columns, y: row}} face={face} active={false}/>
                             }
                             else if(columns === 4){
-                                component = <PieceKing defaultPosition={{x: columns, y: row}} currentPosition={{x: columns, y: row}}/>
                                 face = 'white';
+                                component = <PieceKing defaultPosition={{x: columns, y: row}} currentPosition={{x: columns, y: row}} face={face} active={false}/>
                             }
                             else if(columns === 3) {
-                                component = <PieceQueen defaultPosition={{x: columns, y: row}} currentPosition={{x: columns, y: row}}/>
                                 face = 'white';
+                                component = <PieceQueen defaultPosition={{x: columns, y: row}} currentPosition={{x: columns, y: row}} face={face} active={false}/>
                             }
                             break;
 
                         case 1:
                             face = 'white';
-                            component = <PiecePawn defaultPosition={{x: columns, y: row}} currentPosition={{x: columns, y: row}} face={face}/>
+                            component = <PiecePawn defaultPosition={{x: columns, y: row}} currentPosition={{x: columns, y: row}} face={face} active={false}/>
                             break;
 
                         case 6:
                             face = 'black';
-                            component = <PiecePawn defaultPosition={{x: columns, y: row}} currentPosition={{x: columns, y: row}} face={face}/>
+                            component = <PiecePawn defaultPosition={{x: columns, y: row}} currentPosition={{x: columns, y: row}} face={face} active={false}/>
                             break;
 
                         case 7:
+                            face = 'black';
                             if(columns === 0 || columns === 7){
-                                face = 'black';
-                                component = <PieceRook defaultPosition={{x: columns, y: row}} currentPosition={{x: columns, y: row}}/>
+                                component = <PieceRook defaultPosition={{x: columns, y: row}} currentPosition={{x: columns, y: row}} face={face} active={false}/>
                                 
                             }
                             else if(columns === 1 || columns === 6){
-                                face = 'black';
-                                component = <PieceKnight defaultPosition={{x: columns, y: row}} currentPosition={{x: columns, y: row}}/>
+                                component = <PieceKnight defaultPosition={{x: columns, y: row}} currentPosition={{x: columns, y: row}} face={face} active={false}/>
                                 
                             }
                             else if(columns === 2 || columns === 5){
-                                face = 'black';
-                                component = <PieceBishop defaultPosition={{x: columns, y: row}} currentPosition={{x: columns, y: row}}/>
+                                component = <PieceBishop defaultPosition={{x: columns, y: row}} currentPosition={{x: columns, y: row}} face={face} active={false}/>
                                 
                             }
                             else if(columns === 4){
-                                component = <PieceKing defaultPosition={{x: columns, y: row}} currentPosition={{x: columns, y: row}}/>
-                                face = 'black';
+                                component = <PieceKing defaultPosition={{x: columns, y: row}} currentPosition={{x: columns, y: row}} face={face} active={false}/>
+                                
                             }
                             else if(columns === 3) {
-                                component = <PieceQueen defaultPosition={{x: columns, y: row}} currentPosition={{x: columns, y: row}}/>
-                                face = 'black';
+                                component = <PieceQueen defaultPosition={{x: columns, y: row}} currentPosition={{x: columns, y: row}} face={face} active={false}/>
+                                
                             }
                             break;
                     }
@@ -99,7 +97,7 @@ function ChessBoard() {
             {chessBoardState.chessBoard.map((row, indexRow) => (
                     <div key={indexRow} className='grid grid-cols-8 gap-0'>
                         {row.map((cell, indexCol) => (
-                            <ChessBlock key={`${indexRow}-${indexCol}`} position={cell.position} type={cell.type} component={cell.component}/>
+                            <ChessBlock key={`${indexRow}-${indexCol}`} position={cell.position} type={cell.type} component={cell.component} face={cell.face}/>
                         ))}
                     </div>
             ))}
