@@ -1,10 +1,12 @@
-import React, {useContext, useEffect} from 'react'
-import { ChessBoardContext } from '../../context/ChessBoardContext'
+import React, {useContext, useEffect} from 'react';
+import { ChessBoardContext } from '../../context/ChessBoardContext';
+import { PlayerPointsContext } from '../../context/PlayerPointsContext';
 import ChessBlock from '../chessBlock';
 import { PieceBishop, PieceKnight, PiecePawn, PieceQueen, PieceRook, PieceKing } from '../pieces/ChessPieces';
 function ChessBoard() {
 
     const chessBoardState = useContext(ChessBoardContext);
+    const {capturedWhites, capturedBlacks} = useContext(PlayerPointsContext);
     useEffect(() => {
         function createBoard() {
             const board = [];
@@ -41,7 +43,7 @@ function ChessBoard() {
 
                         case 1:
                             face = 'white';
-                            component = <PiecePawn defaultPosition={{x: columns, y: row}} currentPosition={{x: columns, y: row}} face={face} active={false}/>
+                            component = <PiecePawn defaultPosition={{x: columns, y: row}} currentPosition={{x: columns, y: row}} face={face}/>
                             break;
 
                         case 6:
@@ -93,14 +95,28 @@ function ChessBoard() {
     }, [chessBoardState.setChessBoard]);
 
     return (
-        <div className='flex flex-col gap-0'>
-            {chessBoardState.chessBoard.map((row, indexRow) => (
-                    <div key={indexRow} className='grid grid-cols-8 gap-0'>
-                        {row.map((cell, indexCol) => (
-                            <ChessBlock key={`${indexRow}-${indexCol}`} position={cell.position} type={cell.type} component={cell.component} face={cell.face}/>
-                        ))}
+        <div className='flex gap-10 mt-2'>
+            <div className='w-32 h-9/12 bg-red-500'>
+                {capturedWhites.map((white, index) => (
+                    <div className='h-24 w-24'>
+                        {white}
                     </div>
-            ))}
+                )) }
+            </div>
+            <div className='flex flex-col gap-0'>
+                {chessBoardState.chessBoard.map((row, indexRow) => (
+                        <div key={indexRow} className='grid grid-cols-8 gap-0'>
+                            {row.map((cell, indexCol) => (
+                                <ChessBlock key={`${indexRow}-${indexCol}`} position={cell.position} type={cell.type} component={cell.component} face={cell.face}/>
+                            ))}
+                        </div>
+                ))}
+            </div>
+            <div className='w-32 h-9/12 bg-red-500'>
+                {capturedBlacks.map((blacks, index) => (
+                    blacks
+                )) }
+            </div>
         </div>
     )
 }
